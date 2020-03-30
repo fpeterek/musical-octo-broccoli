@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace pl_projekt
 {
-  public class LinkedList<Type> : IEnumerable<Type> where Type : Serializable
+  public class LinkedList<Type> : IEnumerable<Type> where Type : IComparable
   {
     private class Node
     {
@@ -28,38 +28,6 @@ namespace pl_projekt
     public int Size { get; private set; }
     private Node? begin = null;
     private Node? end = null;
-    
-    public void Append(Type val)
-    {
-      if (begin == null)
-      {
-        begin = new Node(null, null, val);
-        end = begin;
-      }
-      else
-      {
-        var node = new Node(end, null, val);
-        end.Next = node;
-        end = node;
-      }
-
-      ++Size;
-    }
-
-    public void Push(Type val)
-    {
-      if (begin == null)
-      {
-        Append(val);
-      }
-      else
-      {
-        var node = new Node(null, begin, val);
-        begin.Prev = node;
-        begin = node;
-        ++Size;
-      }
-    }
 
     private Node GetNode(int index)
     {
@@ -89,6 +57,65 @@ namespace pl_projekt
       GetNode(index).Value = value;
     }
 
+    void Push(Type value)
+    {
+      var node = new Node(null, begin, value);
+      if (begin == null)
+      {
+        begin = node;
+        end = begin;
+      }
+      else
+      {
+        node.Next = begin;
+        begin.Prev = node;
+        begin = node;
+      }
+      ++Size;
+    }
+    
+    void Append(Type value)
+    {
+      var node = new Node(end, null, value);
+      if (end == null)
+      {
+        begin = node;
+        end = begin;
+      }
+      else
+      {
+        node.Prev = end;
+        end.Next = node;
+        end = node;
+      }
+      ++Size;
+    }
+
+    public void Insert(Type value)
+    {
+
+      if (begin == null || begin.Value.CompareTo(value) > 0)
+      {
+        Push(value);
+        return;
+      }
+
+      if (end.Value.CompareTo(value) < 0)
+      {
+        Append(value);
+        return;
+      }
+      
+      var val = begin;
+      while (val.Value.CompareTo(value) < 0)
+      {
+        val = val.Next;
+      }
+
+      var node = new Node(val.Prev, val, value);
+      val.Prev.Next = node;
+      val.Prev = node;
+    }
 
     public Type this[int key]
     {
@@ -96,6 +123,10 @@ namespace pl_projekt
       set => Set(key, value);
     }
 
+    public bool Empty
+    {
+      get => Size == 0;
+    }
 
     public IEnumerator<Type> GetEnumerator()
     {

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fleet>
+    <aircraft>
+        <manufacturer>Airbus</manufacturer>
+        <type>A350-900</type>
+        <registration>OK-XWA</registration>
+        <airline>Virgin Europe</airline>
+        <economySeats>250</economySeats>
+        <businessSeats>50</businessSeats>
+        <isAvailable>true</isAvailable>
+    </aircraft>
+    <aircraft>
+        <manufacturer>Boeing</manufacturer>
+        <type>747-8</type>
+        <registration>OK-JMB</registration>
+        <airline>Virgin Europe</airline>
+        <economySeats>380</economySeats>
+        <businessSeats>70</businessSeats>
+        <isAvailable>true</isAvailable>
+    </aircraft>
+    <aircraft>
+        <manufacturer>Airbus</manufacturer>
+        <type>A350-1000</type>
+        <registration>OK-XWC</registration>
+        <airline>Virgin Europe</airline>
+        <economySeats>280</economySeats>
+        <businessSeats>60</businessSeats>
+        <isAvailable>true</isAvailable>
+    </aircraft>
+    <aircraft>
+        <manufacturer>Airbus</manufacturer>
+        <type>A350-1000</type>
+        <registration>OK-XWB</registration>
+        <airline>Virgin Europe</airline>
+        <economySeats>280</economySeats>
+        <businessSeats>60</businessSeats>
+        <isAvailable>false</isAvailable>
+    </aircraft>
+    <aircraft>
+        <manufacturer>Airbus</manufacturer>
+        <type>A350-1000</type>
+        <registration>OK-XWE</registration>
+        <airline>Virgin Europe</airline>
+        <economySeats>280</economySeats>
+        <businessSeats>60</businessSeats>
+        <isAvailable>false</isAvailable>
+    </aircraft>
+    <aircraft>
+        <manufacturer>Airbus</manufacturer>
+        <type>A350-1000</type>
+        <registration>OK-XWD</registration>
+        <airline>Virgin Europe</airline>
+        <economySeats>280</economySeats>
+        <businessSeats>60</businessSeats>
+        <isAvailable>true</isAvailable>
+    </aircraft>
+</fleet>
