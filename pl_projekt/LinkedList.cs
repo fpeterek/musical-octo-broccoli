@@ -1,8 +1,3 @@
-/* If you're reading this, I just wanted to say I appreciated the fact */
-/* that I was given the chance to develop this app under Linux instead */
-/* of having to install Windows as well as Visual Studio just to       */
-/* uninstall it again                                                  */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -121,6 +116,48 @@ namespace pl_projekt
     {
       get => Get(key);
       set => Set(key, value);
+    }
+
+    public void RemoveIf(Func<Type, bool> filterFun)
+    {
+      for (Node n = begin; n != null; n = n.Next)
+      {
+        if (filterFun(n.Value))
+        {
+          if (n.Prev != null)
+          {
+            n.Prev.Next = n.Next;
+          }
+          if (n.Next != null)
+          {
+            n.Next.Prev = n.Prev;
+          }
+
+          if (n == begin)
+          {
+            begin = n.Next;
+          }
+
+          if (n == end)
+          {
+            end = n.Prev;
+          }
+          
+        }
+      }
+    }
+
+    public Type FindWhere(Func<Type, bool> fn)
+    {
+      for (Node n = begin; n != null; n = n.Next)
+      {
+        if (fn(n.Value))
+        {
+          return n.Value;
+        }
+      }
+
+      throw new ArgumentException("No such item found");
     }
 
     public bool Empty
