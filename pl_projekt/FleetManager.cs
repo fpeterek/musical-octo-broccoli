@@ -177,7 +177,7 @@ namespace pl_projekt
       return newVal >= 0 ? newVal : old;
     }
     
-    void ModifyAircraft(Aircraft ac)
+    void ModifyAircraft(ref Aircraft ac)
     {
       
       Console.WriteLine("Modyfing aircraft {0}", ac);
@@ -209,11 +209,11 @@ namespace pl_projekt
       }
       else if (input == "2")
       {
-        string registration = AskPersistently("Registration: ");
+        string registration = AskPersistently("Registration: ").ToUpper();
         try
         {
-          var aircraft = fleet.FindWhere(ac => ac.Registration == registration);
-          ModifyAircraft(aircraft);
+          ref Aircraft aircraft = ref fleet.FindWhere(ac => ac.Registration == registration);
+          ModifyAircraft(ref aircraft);
         }
         catch (Exception e)
         {

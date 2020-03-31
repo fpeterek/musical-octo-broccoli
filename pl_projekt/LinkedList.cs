@@ -147,13 +147,13 @@ namespace pl_projekt
       }
     }
 
-    public Type FindWhere(Func<Type, bool> fn)
+    public ref Type FindWhere(Func<Type, bool> fn)
     {
       for (Node n = begin; n != null; n = n.Next)
       {
         if (fn(n.Value))
         {
-          return n.Value;
+          return ref n.Value;
         }
       }
 
